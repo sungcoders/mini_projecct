@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>remote tivi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0" charset="UTF-8">
+    <style>
+        body{
+            background-color: #000000;
+        #content{
+            border: white solid 2px;
+            width: 330px;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+        .button{
+            background: blue;
+            width: 90px;
+            height: 60px;
+            margin: 5px 5px;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        .arrow-up{
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            width: 90px;
+            height: 70px;
+            margin: 2px 0px;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 45px solid transparent;
+            background: blue;
+        }
+        .arrow-down{
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            width: 90px;
+            height: 70px;
+            margin: 2px 5px;
+            border-left: 35px solid transparent;
+            border-right: 35px solid transparent;
+            border-bottom: 45px solid #ffffff;   /*tam giac phia tren duoc do mau*/
+            background: blue;
+        }
+        .arrow-left{
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            width: 90px;
+            height: 70px;
+            margin: 2px 5px;
+            border-bottom: 35px solid transparent; 
+            border-top: 35px solid transparent;
+            border-right: 45px solid #ffffff;    /*tam giac ben trai duoc do mau*/
+            background: blue;
+        }
+        .arrow-right{
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            width: 90px;
+            height: 70px;
+            margin: 2px 5px;
+            border-bottom: 35px solid transparent; 
+            border-top: 35px solid transparent;
+            border-left: 45px solid  #ffffff;/*tam giac phia tren duoc do mau*/
+            background: blue;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div id="content" >
+        <div>
+            <button class="button" style="background-color:red ">POWER</button>
+            <button class="button">MUTE</button>
+            <button class="button">SOURCE</button>
+        </div>
+        <div>
+            <button class="button" style="background-color: steelblue;">VOL+</button>
+            <button class="button" style="background-color: chartreuse;">CH+</button>
+            <button class="button">MENU</button>
+        </div>
+        <div>
+            <button class="button" style="background-color: steelblue;">VOL-</button>
+            <button class="button" style="background-color: chartreuse;">CH-</button>
+            <button class="button">EXIT</button>
+        </div>
+        <div>
+            <button class="arrow-up">UP</button>
+        </div>
+        <div>
+            <button class="arrow-left">LEFT</button>
+            <button class="button" style="background-color: chocolate;">ENTER</button>
+            <button class="arrow-right">RIGHT</button>
+        </div>
+        <div>
+            <button class="arrow-down">DOWN</button>
+        </div>
+        <div>
+            <button class="button">PLAY</button>
+            <button class="button">BACK</button>
+            <button class="button" >NEXT</button>
+        </div>
+    </div> 
+
+    <script>
+        window.onload = function(){
+            init();
+        }
+        var Socket;
+        function init(){
+            // khoi tao websocket
+            Socket = new WebSocket('ws://' + window.Location.hostname + ':81/');
+            // nhan broadcase tu server
+            Socket.onmessage = function(event){
+                document.getElementById('responseText').innerHTML = event.data;
+            }
+        }
+        //----------------- gui du lieu len server-----------------
+        function sendData(data){
+            Socket.send(data);
+        }
+        
+    </script>
+
+</body>
+</html>

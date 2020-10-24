@@ -1,0 +1,86 @@
+<!DOCTYPE HTML><html>
+    <html lang="vi"></html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <title>SMART HOME MINI</title>
+  <style>
+    html {
+     font-family: Arial;
+     display: inline-block;
+     margin: 0px auto;
+     text-align: center;
+     background-color: rgb(236, 236, 236);
+    }
+    h2 { 
+        font-size: 3.0rem; 
+        color: blueviolet;
+
+        }
+    p { font-size: 3.0rem; 
+    }
+    .units { font-size: 40px; color:rgb(68, 0, 204);}
+    .dht-labels{
+      font-size: 1.5rem;
+      vertical-align:middle;
+      padding-bottom: 15px;
+    }
+    .b{width: 150px;height: 60px;font-size: 25px;color: #FFF;background-color:#00fa08;border-radius: 10px;color: rgb(59, 0, 115); font-weight: bold;}
+    .t{width: 150px;height: 60px;font-size: 25px;color: #FFF;background-color:red;border-radius: 10px;color: rgb(59, 0, 115); font-weight: bold;}
+
+
+  </style>
+</head>
+<body>
+  <h2><span style=" padding: 10px; border-style: double; background-color: linen;">★彡SMART HOME彡★ </span></h2>
+  <p><span style="border-style: outset; background-color:rgb(182, 180, 240);">
+    <i class="fas fa-thermometer-half" style="color:red;"></i> 
+    <span class="dht-labels">꧁༺Temperature༻꧂</span> 
+    <span id="temperature" style="color:red;">★ NHIỆT ĐỘ:  </span>
+    <sup class="units">&deg;C☀</sup>
+  </span></p>
+  <p><span style="border-style: outset; background-color: rgb(182, 180, 240);">
+    <i class="fas fa-tint" style="color:blue;"></i> 
+    <span class="dht-labels">꧁༺Humidity༻꧂</span>
+    <span id="humidity" style="color: blue;">★ ĐỘ ẨM:  </span>
+    <sup class="units">%❅</sup>
+  </span></p>
+  <div style="width: 700px;height: auto;margin: 0 auto;margin-top: 30px">
+  <table align="center">
+    <h3 style="color: blue; font-size: 20px; font-family: 'Times New Roman', Times, serif; font-weight: bold;">(►.◄) <i><u> NHẤN CÁC NÚT PHÍA DƯỚI ĐỂ BẬT THIẾT BỊ CỦA BẠN </u></i> (►.◄)</h3>
+		<tr>
+		<td><a href='/bat1'><button class='b'>✅ BẬT 1</button></a><td>
+		<td><a href='/tat1'><button class='t'>TẮT 1 ☠️</button></a><td>
+	    <tr>
+	  <tr>
+			<td><a href='/bat2'><button class='b'>✅ BẬT 2</button></a><td>
+			<td><a href='/tat2'><button class='t'>TẮT 2 ☠️</button></a><td>
+	  <tr>
+  </table>
+</div>
+</body>
+<script>
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("temperature").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/temperature", true);
+  xhttp.send();
+}, 10000 ) ;
+
+setInterval(function ( ) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("humidity").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "/humidity", true);
+  xhttp.send();
+}, 10000 ) ;
+</script>
+</html>
